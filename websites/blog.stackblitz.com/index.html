@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StackBlitz Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-gradient-gray: radial-gradient(
+          64% 130% at 50% 100%,
+          #3f495e 0%,
+          #1f2534 100%
+        );
+        --bg-gradient-darkgray: radial-gradient(
+          64% 130% at 50% 100%,
+          #2c3241 0%,
+          #131720 100%
+        );
+        --bg-gradient-darkergray: radial-gradient(
+          64% 130% at 50% 100%,
+          #2e3442 0%,
+          #14171f 100%
+        );
+        --bg-gradient-darkestgray: radial-gradient(
+          64% 130% at 50% 100%,
+          #242833 0%,
+          #0f1218 100%
+        );
+      }
+
+      .before-users-svg::before {
+        content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 512'%3E%3C!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --%3E%3Cpath d='M96 224c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64zm448 0c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64zm32 32h-64c-17.6 0-33.5 7.1-45.1 18.6 40.3 22.1 68.9 62 75.1 109.4h66c17.7 0 32-14.3 32-32v-32c0-35.3-28.7-64-64-64zm-256 0c61.9 0 112-50.1 112-112S381.9 32 320 32 208 82.1 208 144s50.1 112 112 112zm76.8 32h-8.3c-20.8 10-43.9 16-68.5 16s-47.6-6-68.5-16h-8.3C179.6 288 128 339.6 128 403.2V432c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48v-28.8c0-63.6-51.6-115.2-115.2-115.2zm-223.7-13.4C161.5 263.1 145.6 256 128 256H64c-35.3 0-64 28.7-64 64v32c0 17.7 14.3 32 32 32h65.9c6.3-47.4 34.9-87.3 75.2-109.4z'/%3E%3C/svg%3E");
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+        filter: invert(47%) sepia(12%) saturate(859%) hue-rotate(176deg)
+          brightness(92%) contrast(85%);
+        margin-right: 20px;
+        vertical-align: middle;
+      }
+    </style>
+  </head>
+  <body style="font-family: 'Manrope', sans-serif" class="leading-6">
+    <header
+      class="fixed inset-x-0 top-0 bg-[#eff1f6d6] backdrop-blur-md p-6 z-10"
+    >
+      <nav class="flex justify-between items-center">
+        <div class="flex items-center gap-2" style="transform: translateX(7px)">
+          <svg
+            class="scale-[1.17]"
+            width="89"
+            height="18"
+            viewBox="0 0 89 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5.0003 11.0343C5.06715 10.8396 4.92245 10.6369 4.71655 10.6369H0.664991C0.406624 10.6369 0.269099 10.332 0.440083 10.1383L8.39149 1.1308C8.60874 0.884698 9.0067 1.1162 8.90016 1.42671L6.99902 6.96723C6.9322 7.16196 7.0769 7.3646 7.28278 7.3646H11.3349C11.5933 7.3646 11.7308 7.66948 11.5598 7.86317L3.60745 16.8693C3.39016 17.1154 2.99224 16.8838 3.09882 16.5733L5.0003 11.0343Z"
+              fill="black"
+            />
+            <path
+              d="M25.56 14.2098C27.795 14.2098 29.37 13.0098 29.37 11.0448C29.37 8.89981 27.6 8.34481 25.935 7.8198C24.345 7.3398 23.94 6.99481 23.94 6.3498C23.94 5.7498 24.45 5.2998 25.32 5.2998C26.385 5.2998 26.955 5.8548 27.33 6.6498L29.07 5.6448C28.365 4.1748 27.045 3.2898 25.32 3.2898C23.52 3.2898 21.87 4.4298 21.87 6.4098C21.87 8.4048 23.43 9.07981 25.035 9.54481C26.595 9.9948 27.3 10.2948 27.3 11.0748C27.3 11.6598 26.865 12.1848 25.62 12.1848C24.315 12.1848 23.58 11.5548 23.205 10.5798L21.435 11.6148C22.005 13.1748 23.415 14.2098 25.56 14.2098Z"
+              fill="black"
+            />
+            <path
+              d="M34.7004 8.3598V6.4998H33.0054V4.3998L31.0704 4.9848V6.4998H29.7654V8.3598H31.0704V11.4798C31.0704 13.5048 31.9854 14.2998 34.7004 13.9998V12.2448C33.5904 12.3048 33.0054 12.2898 33.0054 11.4798V8.3598H34.7004Z"
+              fill="black"
+            />
+            <path
+              d="M41.5303 6.4998V7.3848C40.9903 6.7098 40.1803 6.2898 39.0853 6.2898C37.0903 6.2898 35.4403 8.0148 35.4403 10.2498C35.4403 12.4848 37.0903 14.2098 39.0853 14.2098C40.1803 14.2098 40.9903 13.7898 41.5303 13.1148V13.9998H43.4653V6.4998H41.5303ZM39.4453 12.3648C38.2603 12.3648 37.3753 11.5098 37.3753 10.2498C37.3753 8.9898 38.2603 8.1348 39.4453 8.1348C40.6453 8.1348 41.5303 8.9898 41.5303 10.2498C41.5303 11.5098 40.6453 12.3648 39.4453 12.3648Z"
+              fill="black"
+            />
+            <path
+              d="M48.79 14.2098C50.26 14.2098 51.535 13.4298 52.18 12.2598L50.5 11.2998C50.2 11.9148 49.555 12.2898 48.775 12.2898C47.62 12.2898 46.765 11.4348 46.765 10.2498C46.765 9.0498 47.62 8.1948 48.775 8.1948C49.54 8.1948 50.185 8.5848 50.485 9.1998L52.15 8.2248C51.535 7.0698 50.26 6.2898 48.79 6.2898C46.51 6.2898 44.83 8.0148 44.83 10.2498C44.83 12.4848 46.51 14.2098 48.79 14.2098Z"
+              fill="black"
+            />
+            <path
+              d="M60.1184 13.9998L57.0134 10.2048L60.0284 6.4998H57.7184L55.1384 9.79981V3.4998H53.2034V13.9998H55.1384V10.5948L57.8684 13.9998H60.1184Z"
+              fill="black"
+            />
+            <path
+              d="M67.5192 8.55481C68.1342 8.0598 68.5092 7.3548 68.5092 6.4548C68.5092 4.69981 67.0842 3.4998 65.3142 3.4998H61.1742V13.9998H65.6292C67.4442 13.9998 68.8992 12.7548 68.8992 10.9548C68.8992 9.8598 68.3592 9.0348 67.5192 8.55481ZM65.3142 5.4348C65.9742 5.4348 66.4392 5.9298 66.4392 6.5898C66.4392 7.2498 65.9592 7.7448 65.3142 7.7448H63.2442V5.4348H65.3142ZM65.6292 12.0648H63.2442V9.58981H65.6292C66.3342 9.58981 66.8442 10.1148 66.8442 10.8198C66.8442 11.5398 66.3342 12.0648 65.6292 12.0648Z"
+              fill="black"
+            />
+            <path
+              d="M70.1662 13.9998H72.1012V3.0498H70.1662V13.9998Z"
+              fill="black"
+            />
+            <path
+              d="M74.8323 5.5998C75.4923 5.5998 76.0323 5.0598 76.0323 4.4148C76.0323 3.7698 75.4923 3.2148 74.8323 3.2148C74.1873 3.2148 73.6473 3.7698 73.6473 4.4148C73.6473 5.0598 74.1873 5.5998 74.8323 5.5998ZM73.8723 13.9998H75.8073V6.4998H73.8723V13.9998Z"
+              fill="black"
+            />
+            <path
+              d="M81.8684 8.3598V6.4998H80.1734V4.3998L78.2384 4.9848V6.4998H76.9334V8.3598H78.2384V11.4798C78.2384 13.5048 79.1534 14.2998 81.8684 13.9998V12.2448C80.7584 12.3048 80.1734 12.2898 80.1734 11.4798V8.3598H81.8684Z"
+              fill="black"
+            />
+            <path
+              d="M85.5437 12.1848L88.7237 7.7898V6.4998H83.0987V8.3148H86.1137L82.9487 12.7098V13.9998H88.8737V12.1848H85.5437Z"
+              fill="black"
+            />
+          </svg>
+          <a href="#" class="text-[15px] font-medium">
+            <span class="px-4 text-gray-400">/</span>Blog
+          </a>
+        </div>
+        <div>
+          <svg
+            width="18"
+            height="18"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"
+          >
+            <!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+            <path
+              d="M0 88C0 74.7 10.7 64 24 64H424c13.3 0 24 10.7 24 24s-10.7 24-24 24H24C10.7 112 0 101.3 0 88zM0 248c0-13.3 10.7-24 24-24H424c13.3 0 24 10.7 24 24s-10.7 24-24 24H24c-13.3 0-24-10.7-24-24zM448 408c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24s10.7-24 24-24H424c13.3 0 24 10.7 24 24z"
+            />
+          </svg>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div class="bg-[url('images/light-background.png')] pt-24 pb-10 px-5">
+        <div class="lg:max-w-[1296px] mx-auto lg:grid lg:grid-cols-1">
+          <div
+            class="mb-16 sm:grid sm:grid-cols-[1fr_1fr] gap-8 sm:mb-6 lg:items-center lg:grid-cols-[2fr_1fr]"
+          >
+            <a href="#">
+              <img
+                src="images/purple.jpg"
+                alt="vite conf 2023"
+                class="rounded-2xl h-[240px] object-cover mb-5 mx-auto lg:h-auto"
+              />
+            </a>
+            <div>
+              <a
+                href="#"
+                class="text-[0.8rem] border border-gray-300 rounded-2xl px-4 py-0.5 text-slate-600 font-medium mr-4"
+                >News</a
+              >
+              <p
+                class="inline-block text-[0.8rem] text-slate-600 font-medium mb-7"
+              >
+                August 10, 2023
+              </p>
+              <a
+                href="#"
+                class="block text-3xl font-medium mb-6 text-slate-900 after:content-[''] after:h-[1px] after:bg-black after:block after:scale-0 hover:after:scale-100 after:transition-transform after:duration-100 after:origin-left"
+                >ViteConf is back!</a
+              >
+              <p class="text-slate-500 text-sm mb-6">
+                We’re excited to announce that the second ever ViteConf will
+                take place online starting October 5th.
+              </p>
+              <a href="#">
+                <img
+                  width="32px"
+                  height="32px"
+                  src="images/eric-simons.png"
+                  alt="Eric Simons himself"
+                  class="inline-block rounded-full mr-4"
+                />
+                <p class="inline-block font-bold text-sm text-slate-600">
+                  Eric Simons
+                </p>
+              </a>
+            </div>
+          </div>
+          <div class="lg:flex gap-7">
+            <div
+              class="mb-16 sm:grid sm:grid-cols-[1fr_1fr] gap-8 sm:mb-6 lg:flex lg:flex-col"
+            >
+              <a href="#" class="hover:-translate-y-1 transition-transform">
+                <img
+                  src="images/green.jpg"
+                  alt="WebAssembly"
+                  class="rounded-2xl h-[240px] object-cover mb-5 mx-auto lg:mb-0 lg:h-auto"
+                />
+              </a>
+              <div>
+                <a
+                  href="#"
+                  class="text-[0.8rem] border border-gray-300 rounded-2xl px-4 py-0.5 text-slate-600 font-medium mr-4"
+                  >Engineering</a
+                >
+                <p
+                  class="inline-block text-[0.8rem] text-slate-600 font-medium mb-7"
+                >
+                  August 10, 2023
+                </p>
+                <a
+                  href="#"
+                  class="block text-3xl font-medium mb-6 text-slate-900 sm:text-xl after:content-[''] after:h-[1px] after:bg-black after:block after:scale-0 hover:after:scale-100 after:transition-transform after:duration-100 after:origin-left"
+                  >Bringing Sharp to WebAssembly and WebContainers</a
+                >
+                <p class="text-slate-500 text-sm mb-6">
+                  Challenges of porting native Node.js modules like Sharp to
+                  more platforms with WebAssembly.
+                </p>
+                <a href="#">
+                  <img
+                    width="32px"
+                    height="32px"
+                    src="images/ingvar-stepanyan.png"
+                    alt="Eric Simons himself"
+                    class="inline-block rounded-full mr-4"
+                  />
+                  <p class="inline-block font-bold text-sm text-slate-600 mr-2">
+                    Ingvar Stepanyan
+                  </p>
+                  <p
+                    class="inline-block bg-slate-300 rounded-md text-slate-700 text-xs px-2 py-1"
+                  >
+                    Guest Author
+                  </p>
+                </a>
+              </div>
+            </div>
+            <div
+              class="mb-16 sm:grid sm:grid-cols-[1fr_1fr] gap-8 sm:mb-6 lg:flex lg:flex-col"
+            >
+              <a href="#" class="hover:-translate-y-1 transition-transform">
+                <img
+                  src="images/npm.jpg"
+                  alt="WebAssembly"
+                  class="rounded-2xl h-[240px] object-cover mb-5 mx-auto lg:mb-0 lg:h-auto"
+                />
+              </a>
+              <div>
+                <a
+                  href="#"
+                  class="text-[0.8rem] border border-gray-300 rounded-2xl px-4 py-0.5 text-slate-600 font-medium mr-4"
+                  >News</a
+                >
+                <p
+                  class="inline-block text-[0.8rem] text-slate-600 font-medium mb-7"
+                >
+                  August 10, 2023
+                </p>
+                <a
+                  href="#"
+                  class="block text-3xl font-medium mb-6 text-slate-900 after:content-[''] after:h-[1px] after:bg-black after:block after:scale-0 hover:after:scale-100 after:transition-transform after:duration-100 after:origin-left"
+                  >ViteConf is back!</a
+                >
+                <p class="text-slate-500 text-sm mb-6">
+                  We’re excited to announce that the second ever ViteConf will
+                  take place online starting October 5th.
+                </p>
+                <a href="#">
+                  <img
+                    width="32px"
+                    height="32px"
+                    src="images/eric-simons.png"
+                    alt="Eric Simons himself"
+                    class="inline-block rounded-full mr-4"
+                  />
+                  <p class="inline-block font-bold text-sm text-slate-600">
+                    Eric Simons
+                  </p>
+                </a>
+              </div>
+            </div>
+            <div
+              class="mb-16 sm:grid sm:grid-cols-[1fr_1fr] gap-8 sm:mb-6 lg:flex lg:flex-col"
+            >
+              <a href="#" class="hover:-translate-y-1 transition-transform">
+                <img
+                  src="images/blue.jpg"
+                  alt="WebAssembly"
+                  class="rounded-2xl h-[240px] object-cover mb-5 mx-auto lg:mb-0 lg:h-auto"
+                />
+              </a>
+              <div>
+                <a
+                  href="#"
+                  class="text-[0.8rem] border border-gray-300 rounded-2xl px-4 py-0.5 text-slate-600 font-medium mr-4"
+                  >News</a
+                >
+                <p
+                  class="inline-block text-[0.8rem] text-slate-600 font-medium mb-7"
+                >
+                  August 10, 2023
+                </p>
+                <a
+                  href="#"
+                  class="block text-3xl font-medium mb-6 text-slate-900 after:content-[''] after:h-[1px] after:bg-black after:block after:scale-0 hover:after:scale-100 after:transition-transform after:duration-100 after:origin-left"
+                  >ViteConf is back!</a
+                >
+                <p class="text-slate-500 text-sm mb-6">
+                  We’re excited to announce that the second ever ViteConf will
+                  take place online starting October 5th.
+                </p>
+                <a href="#">
+                  <img
+                    width="32px"
+                    height="32px"
+                    src="images/eric-simons.png"
+                    alt="Eric Simons himself"
+                    class="inline-block rounded-full mr-4"
+                  />
+                  <p class="inline-block font-bold text-sm text-slate-600">
+                    Eric Simons
+                  </p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="px-5 mt-24 pt-8 border-t lg:max-w-[1296px] mx-auto">
+        <div class="flex justify-between items-center mb-12">
+          <h2 class="text-xl text-slate-600">Engineering</h2>
+          <a href="#" class="text-sm text-slate-400">View all</a>
+        </div>
+        <div class="lg:grid lg:grid-cols-[2fr_1fr] lg:mb-32 lg:gap-8">
+          <div class="sm:grid sm:grid-cols-2 sm:gap-7 lg:flex lg:flex-col">
+            <img
+              src="images/purple.jpg"
+              alt="ViteConf 2023"
+              class="rounded-2xl h-[240px] object-cover mb-5 lg:h-auto hover:-translate-y-1 transition-transform"
+            />
+            <div>
+              <a href="#" class="block text-3xl font-medium mb-5 text-slate-900"
+                >ViteConf is back!</a
+              >
+              <p class="text-slate-500 text-sm mb-6">
+                We’re excited to announce that the second ever ViteConf will
+                take place online starting October 5th.
+              </p>
+              <a href="#" class="inline-block mb-16 lg:mb-0">
+                <img
+                  width="32px"
+                  height="32px"
+                  src="images/eric-simons.png"
+                  alt="Eric Simons himself"
+                  class="inline-block rounded-full mr-4"
+                />
+                <p class="inline-block font-bold text-sm text-slate-600">
+                  Eric Simons
+                </p>
+              </a>
+            </div>
+          </div>
+          <div class="lg:flex lg:flex-col lg:justify-between">
+            <div class="mb-16 lg:mb-0">
+              <a
+                href="#"
+                class="inline-block text-2xl font-medium mb-3 text-slate-900"
+                >npm, yarn and pnpm are now supported natively in
+                WebContainers</a
+              >
+              <p class="text-slate-500 text-sm mb-3">
+                We have shipped native support for npm and with that,
+                WebContainers now support all major package managers.
+              </p>
+              <a href="#" class="text-sm text-slate-600 font-medium"
+                >Eric Simons</a
+              >
+            </div>
+            <div class="mb-16 border-t pt-6 lg:mb-0">
+              <a
+                href="#"
+                class="inline-block text-2xl font-medium mb-3 text-slate-900"
+                >WebContainers now run on Safari, iOS, and iPadOS</a
+              >
+              <p class="text-slate-500 text-sm mb-3">
+                You can now enjoy the interactive code examples and playgrounds
+                right from an iPhone or iPad.
+              </p>
+              <a href="#" class="text-sm text-slate-600 font-medium"
+                >Sylwia Vargas</a
+              >
+            </div>
+            <div class="mb-40 border-t pt-6 lg:mb-0">
+              <a
+                href="#"
+                class="inline-block text-2xl font-medium mb-3 text-slate-900"
+                >WebContainer API is here.</a
+              >
+              <p class="text-slate-500 text-sm mb-3">
+                After two years of usage by millions of developers every month,
+                today we are excited to release the public WebContainer API for
+                general use.
+              </p>
+              <a href="#" class="text-sm text-slate-600 font-medium"
+                >Eric Simons</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="px-5 mt-24 pt-8 border-t lg:max-w-[1296px] mx-auto">
+        <div class="flex justify-between items-center mb-12">
+          <h2 class="text-xl text-slate-600">Engineering</h2>
+          <a href="#" class="text-sm text-slate-400">View all</a>
+        </div>
+        <div class="lg:grid lg:grid-cols-[1fr_2fr] lg:mb-32 lg:gap-8">
+          <div
+            class="sm:grid sm:grid-cols-2 sm:gap-7 lg:flex lg:flex-col lg:order-3"
+          >
+            <img
+              src="images/green.jpg"
+              alt="ViteConf 2023"
+              class="rounded-2xl h-[240px] object-cover mb-5 lg:h-auto hover:-translate-y-1 transition-transform"
+            />
+            <div>
+              <a href="#" class="block text-3xl font-medium mb-5 text-slate-900"
+                >ViteConf is back!</a
+              >
+              <p class="text-slate-500 text-sm mb-6">
+                We’re excited to announce that the second ever ViteConf will
+                take place online starting October 5th.
+              </p>
+              <a href="#" class="inline-block mb-16 lg:mb-0">
+                <img
+                  width="32px"
+                  height="32px"
+                  src="images/eric-simons.png"
+                  alt="Eric Simons himself"
+                  class="inline-block rounded-full mr-4"
+                />
+                <p class="inline-block font-bold text-sm text-slate-600">
+                  Eric Simons
+                </p>
+              </a>
+            </div>
+          </div>
+          <div class="lg:flex lg:flex-col lg:justify-between">
+            <div class="mb-16 lg:mb-0">
+              <a
+                href="#"
+                class="inline-block text-2xl font-medium mb-3 text-slate-900"
+                >npm, yarn and pnpm are now supported natively in
+                WebContainers</a
+              >
+              <p class="text-slate-500 text-sm mb-3">
+                We have shipped native support for npm and with that,
+                WebContainers now support all major package managers.
+              </p>
+              <a href="#" class="text-sm text-slate-600 font-medium"
+                >Eric Simons</a
+              >
+            </div>
+            <div class="mb-16 border-t pt-6 lg:mb-0">
+              <a
+                href="#"
+                class="inline-block text-2xl font-medium mb-3 text-slate-900"
+                >WebContainers now run on Safari, iOS, and iPadOS</a
+              >
+              <p class="text-slate-500 text-sm mb-3">
+                You can now enjoy the interactive code examples and playgrounds
+                right from an iPhone or iPad.
+              </p>
+              <a href="#" class="text-sm text-slate-600 font-medium"
+                >Sylwia Vargas</a
+              >
+            </div>
+            <div class="mb-40 border-t pt-6 lg:mb-0">
+              <a
+                href="#"
+                class="inline-block text-2xl font-medium mb-3 text-slate-900"
+                >WebContainer API is here.</a
+              >
+              <p class="text-slate-500 text-sm mb-3">
+                After two years of usage by millions of developers every month,
+                today we are excited to release the public WebContainer API for
+                general use.
+              </p>
+              <a href="#" class="text-sm text-slate-600 font-medium"
+                >Eric Simons</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="px-8 py-4 sm:px-0 sm:pb-8 lg:py-0"
+        style="background: var(--bg-gradient-gray)"
+      >
+        <div class="lg:max-w-[1296px] mx-auto relative">
+          <div class="mb-14 sm:pl-8 lg:absolute lg:left-[16px] top-6 lg:p-0 z-10">
+            <svg
+              width="15"
+              height="23"
+              viewBox="0 0 15 23"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="inline-block mr-2"
+            >
+              <path
+                d="M6.14179 13.9771C6.20864 13.7824 6.06394 13.5797 5.85805 13.5797H0.664991C0.406624 13.5797 0.269099 13.2749 0.440083 13.0812L10.4781 1.70991C10.6953 1.4638 11.0933 1.6953 10.9868 2.00581L8.52406 9.18291C8.45724 9.37764 8.60194 9.58028 8.80782 9.58028H14.0016C14.2599 9.58028 14.3975 9.88516 14.2264 10.0788L4.18725 21.4484C3.96996 21.6945 3.57203 21.4629 3.67862 21.1524L6.14179 13.9771Z"
+                fill="#0085E6"
+              />
+              <g style="mix-blend-mode: overlay">
+                <path
+                  d="M6.6147 14.1395C6.79297 13.6202 6.4071 13.0797 5.85805 13.0797H1.10832L10.1875 2.79467L8.05113 9.02063C7.87294 9.53992 8.25881 10.0803 8.80782 10.0803H13.5582L4.47803 20.3637L6.6147 14.1395Z"
+                  fill="url(#paint0_radial_2414_3449)"
+                />
+                <path
+                  d="M6.6147 14.1395C6.79297 13.6202 6.4071 13.0797 5.85805 13.0797H1.10832L10.1875 2.79467L8.05113 9.02063C7.87294 9.53992 8.25881 10.0803 8.80782 10.0803H13.5582L4.47803 20.3637L6.6147 14.1395Z"
+                  stroke="white"
+                  stroke-opacity="0.28"
+                />
+                <path
+                  d="M6.6147 14.1395C6.79297 13.6202 6.4071 13.0797 5.85805 13.0797H1.10832L10.1875 2.79467L8.05113 9.02063C7.87294 9.53992 8.25881 10.0803 8.80782 10.0803H13.5582L4.47803 20.3637L6.6147 14.1395Z"
+                  stroke="url(#paint1_linear_2414_3449)"
+                />
+              </g>
+              <defs>
+                <radialGradient
+                  id="paint0_radial_2414_3449"
+                  cx="0"
+                  cy="0"
+                  r="1"
+                  gradientUnits="userSpaceOnUse"
+                  gradientTransform="translate(11.1096 -0.866412) rotate(101.448) scale(24.8567 16.2501)"
+                >
+                  <stop offset="0.0426961" stop-color="#82F7FF" />
+                  <stop offset="0.384728" stop-color="#31DAF1" />
+                  <stop offset="0.672119" stop-color="#0DA8EA" />
+                  <stop offset="1" stop-color="#00507D" />
+                </radialGradient>
+                <linearGradient
+                  id="paint1_linear_2414_3449"
+                  x1="7.33333"
+                  y1="1.28423"
+                  x2="7.33333"
+                  y2="22.5791"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stop-color="white" />
+                  <stop offset="0.557292" stop-color="white" stop-opacity="0" />
+                </linearGradient>
+              </defs>
+            </svg>
+            <p class="inline-block text-white">Explore more from StackBlitz</p>
+          </div>
+          <div
+            class="sm:grid sm:grid-cols-2 sm:[&>div]:p-8 sm:[&>div]:mb-0 lg:grid-cols-4 lg:[&>div]:py-28"
+          >
+            <div class="mb-20 hover:backdrop-brightness-75 transition sm:rounded-3xl lg:rounded-none">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 640 512"
+                class="h-[20px] w-[20px] mb-4"
+              >
+                <!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) -->
+                <path
+                  fill="#c084fc"
+                  d="M96 224c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64zm448 0c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64zm32 32h-64c-17.6 0-33.5 7.1-45.1 18.6 40.3 22.1 68.9 62 75.1 109.4h66c17.7 0 32-14.3 32-32v-32c0-35.3-28.7-64-64-64zm-256 0c61.9 0 112-50.1 112-112S381.9 32 320 32 208 82.1 208 144s50.1 112 112 112zm76.8 32h-8.3c-20.8 10-43.9 16-68.5 16s-47.6-6-68.5-16h-8.3C179.6 288 128 339.6 128 403.2V432c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48v-28.8c0-63.6-51.6-115.2-115.2-115.2zm-223.7-13.4C161.5 263.1 145.6 256 128 256H64c-35.3 0-64 28.7-64 64v32c0 17.7 14.3 32 32 32h65.9c6.3-47.4 34.9-87.3 75.2-109.4z"
+                />
+              </svg>
+              <p class="text-white text-lg mb-2">Join the Community</p>
+              <p class="text-slate-400 text-sm mb-7">
+                Get a hand, lend a hand, share your projects and be part of our
+                growing community of developers.
+              </p>
+              <a href="#" class="block text-white text-sm">Join the Discord</a>
+            </div>
+            <div class="mb-20 hover:backdrop-brightness-75 transition sm:rounded-3xl lg:rounded-none">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+                class="h-[20px] w-[20px] mb-4"
+              >
+                <!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                <path
+                  fill="#A3E635"
+                  d="M256 0l11.6 4.5L475.1 85l19.2 7.4 1.2 20.5c2.9 50-4.9 126.3-37.3 200.9c-32.7 75.2-91.1 150-189.4 192.6L256 512l-12.7-5.5C144.9 463.9 86.5 389.2 53.9 313.9C21.4 239.3 13.6 162.9 16.6 113l1.2-20.5L36.9 85 244.4 4.5 256 0zM369 209l17-17L352 158.1l-17 17-111 111-47-47-17-17L126.1 256l17 17 64 64 17 17 17-17L369 209z"
+                />
+              </svg>
+              <p class="text-white text-lg mb-2">Enterprise Server</p>
+              <p class="text-slate-400 text-sm mb-7">
+                The power of StackBlitz behind your firewall.
+              </p>
+              <a href="#" class="block text-white text-sm">Contact Sales</a>
+            </div>
+            <div class="mb-20 hover:backdrop-brightness-75 transition sm:rounded-3xl lg:rounded-none">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+                class="h-[20px] w-[20px] mb-4"
+              >
+                <!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                <path
+                  fill="#FB923C"
+                  d="M0 32C0 14.3 14.3 0 32 0H96c17.7 0 32 14.3 32 32V96H0V32zm0 96H128V384H0V128zM0 416H128v64c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32V416zM160 32c0-17.7 14.3-32 32-32h64c17.7 0 32 14.3 32 32V96H160V32zm0 96H288V384H160V128zm0 288H288v64c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32V416zm203.6-19.9L320 232.6V142.8l100.4-26.9 66 247.4L363.6 396.1zM412.2 85L320 109.6V11l36.9-9.9c16.9-4.6 34.4 5.5 38.9 22.6L412.2 85zM371.8 427l122.8-32.9 16.3 61.1c4.5 17-5.5 34.5-22.5 39.1l-61.4 16.5c-16.9 4.6-34.4-5.5-38.9-22.6L371.8 427z"
+                />
+              </svg>
+              <p class="text-white text-lg mb-2">Documentation</p>
+              <p class="text-slate-400 text-sm mb-7">
+                Learn StackBlitz in-depth, integrate into your workflows, and
+                build your own apps on top of WebContainer.
+              </p>
+              <a href="#" class="block text-white text-sm">Browse the docs</a>
+            </div>
+            <div class="mb-20 hover:backdrop-brightness-75 transition sm:rounded-3xl lg:rounded-none">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+                class="h-[20px] w-[20px] mb-4"
+              >
+                <!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                <path
+                  fill="#7DD3FC"
+                  d="M117.8 128H207C286.9-3.7 409.5-8.5 483.9 5.3c11.6 2.2 20.7 11.2 22.8 22.8c13.8 74.4 9 197-122.7 276.9v89.3c0 25.4-13.4 49-35.3 61.9l-88.5 52.5c-7.4 4.4-16.6 4.5-24.1 .2s-12.1-12.2-12.1-20.9l0-114.7c0-22.6-9-44.3-25-60.3s-37.7-25-60.3-25H24c-8.6 0-16.6-4.6-20.9-12.1s-4.2-16.7 .2-24.1l52.5-88.5c13-21.9 36.5-35.3 61.9-35.3zM424 128a40 40 0 1 0 -80 0 40 40 0 1 0 80 0zM166.5 470C132.3 504.3 66 511 28.3 511.9c-16 .4-28.6-12.2-28.2-28.2C1 446 7.7 379.7 42 345.5c34.4-34.4 90.1-34.4 124.5 0s34.4 90.1 0 124.5zm-46.7-36.4c11.4-11.4 11.4-30 0-41.4s-30-11.4-41.4 0c-10.1 10.1-13 28.5-13.7 41.3c-.5 8 5.9 14.3 13.9 13.9c12.8-.7 31.2-3.7 41.3-13.7z"
+                />
+              </svg>
+              <p class="text-white text-lg mb-2">Work with us!</p>
+              <p class="text-slate-400 text-sm mb-7">
+                Help make the world's software faster and more secure.
+              </p>
+              <a href="#" class="block text-white text-sm"
+                >Check out open positions</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="pt-6 px-5 pb-10 sm:py-28"
+        style="background: var(--bg-gradient-darkgray)"
+      >
+        <div class="lg:max-w-[1296px] mx-auto">
+          <svg
+            width="77"
+            height="76"
+            viewBox="0 0 77 76"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="mx-auto scale-75 sm:scale-100"
+          >
+            <path
+              d="M35.4328 40.1063C35.611 39.587 35.2252 39.0466 34.6761 39.0466H26.4403C25.7513 39.0466 25.3846 38.2337 25.8405 37.7172L42.3494 19.0155C42.9288 18.3592 43.99 18.9765 43.7059 19.8046L39.8997 30.897C39.7215 31.4163 40.1074 31.9566 40.6564 31.9566H48.8934C49.5824 31.9566 49.9491 32.7696 49.493 33.2861L32.9823 51.9849C32.4029 52.6411 31.3417 52.0236 31.626 51.1956L35.4328 40.1063Z"
+              fill="#0085E6"
+            />
+            <g style="mix-blend-mode: overlay">
+              <path
+                d="M35.9057 40.2687C36.1954 39.4248 35.5683 38.5466 34.6761 38.5466H26.4403C26.1819 38.5466 26.0444 38.2417 26.2154 38.048L42.7243 19.3464C42.9415 19.1003 43.3395 19.3318 43.233 19.6423L39.4268 30.7347C39.1372 31.5785 39.7643 32.4566 40.6564 32.4566H48.8934C49.1518 32.4566 49.2893 32.7615 49.1182 32.9552L32.6075 51.6539C32.3902 51.9 31.9923 51.6684 32.0989 51.3579L35.9057 40.2687Z"
+                fill="url(#paint0_radial_2864_3734)"
+              />
+              <path
+                d="M35.9057 40.2687C36.1954 39.4248 35.5683 38.5466 34.6761 38.5466H26.4403C26.1819 38.5466 26.0444 38.2417 26.2154 38.048L42.7243 19.3464C42.9415 19.1003 43.3395 19.3318 43.233 19.6423L39.4268 30.7347C39.1372 31.5785 39.7643 32.4566 40.6564 32.4566H48.8934C49.1518 32.4566 49.2893 32.7615 49.1182 32.9552L32.6075 51.6539C32.3902 51.9 31.9923 51.6684 32.0989 51.3579L35.9057 40.2687Z"
+                stroke="white"
+                stroke-opacity="0.28"
+              />
+              <path
+                d="M35.9057 40.2687C36.1954 39.4248 35.5683 38.5466 34.6761 38.5466H26.4403C26.1819 38.5466 26.0444 38.2417 26.2154 38.048L42.7243 19.3464C42.9415 19.1003 43.3395 19.3318 43.233 19.6423L39.4268 30.7347C39.1372 31.5785 39.7643 32.4566 40.6564 32.4566H48.8934C49.1518 32.4566 49.2893 32.7615 49.1182 32.9552L32.6075 51.6539C32.3902 51.9 31.9923 51.6684 32.0989 51.3579L35.9057 40.2687Z"
+                stroke="url(#paint1_linear_2864_3734)"
+              />
+            </g>
+            <path
+              d="M23.3492 61.6016C22.607 61.3344 21.7758 61.4531 21.1375 61.9133C19.5047 63.1008 16.7734 64.7781 13.5375 66.1883C10.1383 67.6875 6.175 68.875 2.375 68.875L2.38984 68.8602L2.43438 68.8156L2.44922 68.8008C2.50859 68.7414 2.58281 68.6672 2.67188 68.5633C2.86484 68.3555 3.14687 68.0289 3.47344 67.6281C4.15625 66.7969 5.04688 65.6094 5.9375 64.125C7.52578 61.468 9.11406 57.8758 9.44063 53.7492C9.48516 53.1109 9.27734 52.4727 8.86172 51.9977C4.73516 47.3219 2.375 41.6664 2.375 35.625C2.375 20.3211 17.8422 7.125 38 7.125C58.1578 7.125 73.625 20.3211 73.625 35.625C73.625 50.9289 58.1578 64.125 38 64.125C32.775 64.125 27.8172 63.2195 23.3492 61.6016ZM0.697656 67.1977C0.0148437 67.8805 -0.178125 68.8898 0.192969 69.7805C0.564062 70.6711 1.425 71.25 2.38984 71.25C6.65 71.25 10.9398 69.9289 14.5023 68.3852C17.9016 66.9008 20.7961 65.1344 22.5625 63.843C27.2828 65.55 32.5078 66.5 38.0148 66.5C59.0039 66.5 76.0148 52.6805 76.0148 35.625C76.0148 18.5695 58.9891 4.75 38 4.75C17.0109 4.75 0 18.5695 0 35.625C0 42.3195 2.62734 48.5094 7.08047 53.5711C6.79844 57.2078 5.38828 60.4437 3.90391 62.9078C3.0875 64.2734 2.25625 65.3719 1.64766 66.1141C1.33594 66.4852 1.09844 66.7672 0.920312 66.9602C0.83125 67.0492 0.771875 67.1234 0.727344 67.168L0.682813 67.2125L0.697656 67.1977Z"
+              fill="#485269"
+            />
+            <defs>
+              <radialGradient
+                id="paint0_radial_2864_3734"
+                cx="0"
+                cy="0"
+                r="1"
+                gradientUnits="userSpaceOnUse"
+                gradientTransform="translate(44.3612 13.4375) rotate(101.448) scale(44.0642 28.807)"
+              >
+                <stop offset="0.0426961" stop-color="#82F7FF" />
+                <stop offset="0.384728" stop-color="#31DAF1" />
+                <stop offset="0.672119" stop-color="#0DA8EA" />
+                <stop offset="1" stop-color="#00507D" />
+              </radialGradient>
+              <linearGradient
+                id="paint1_linear_2864_3734"
+                x1="37.667"
+                y1="17.25"
+                x2="37.667"
+                y2="55"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stop-color="white" />
+                <stop offset="0.557292" stop-color="white" stop-opacity="0" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <p class="text-white text-center mb-3 sm:text-2xl">
+            Subscribe to StackBlitz Updates
+          </p>
+          <p
+            class="text-slate-400 text-xs text-center mb-7 sm:text-sm max-w-[432px] mx-auto"
+          >
+            A newsletter from StackBlitz covering engineering achievements,
+            product features, and updates from the community.
+          </p>
+          <form
+            action=""
+            class="sm:flex sm:rounded-full sm:border sm:border-slate-700 sm:bg-[#131720] sm:py-1 sm:w-fit sm:mx-auto"
+          >
+            <input
+              type="email"
+              id="email"
+              placeholder="Your email"
+              class="block w-full text-slate-400 rounded-lg p-2.5 px-4 border border-slate-700 text-sm mb-2 sm:border-0 sm:!bg-inherit sm:p-0 sm:m-0 sm:focus:outline-0 sm:ml-4 sm:w-[392px] sm:rounded-none"
+              style="background-color: #131720"
+              required
+            />
+            <button
+              class="w-full rounded-full border border-slate-400 text-slate-300 text-sm py-2.5 sm:mr-1 sm:w-[138px]"
+            >
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </div>
+      <div
+        style="background-image: url(images/banner-01.png)"
+        class="py-36 px-5 bg-center bg-no-repeat bg-cover"
+      >
+        <div class="lg:max-w-[1000px] mx-auto">
+          <h2 class="font-medium text-3xl mb-5">Using StackBlitz at work?</h2>
+          <p class="text-sm text-slate-600 mb-12 max-w-[432px]">
+            Create in-browser preview apps for every issue or pull request,
+            share private templates with your org, manage your design system
+            with zero overhead, and more.
+          </p>
+          <a
+            href="#"
+            class="before-users-svg rounded-full bg-white drop-shadow-md py-4 px-7 inline-block text-sm relative before-users-svg-invisible"
+            >Try StackBlitz Teams</a
+          >
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div
+        style="background: var(--bg-gradient-darkgray)"
+        class="pb-14 px-8 pt-14 text-[0.83rem]"
+      >
+        <div
+          class="lg:max-w-[1296px] mx-auto sm:flex justify-between flex-wrap items-baseline"
+        >
+          <img src="images/stackblitz-logo-color.svg" alt="StackBlitz logo" />
+          <div class="mt-10">
+            <p class="text-white mb-5 font-medium text-sm">Products</p>
+            <a href="#" class="text-slate-400 inline-block mb-1">Codeflow</a
+            ><br />
+            <a href="#" class="text-slate-400 inline-block mb-1"
+              >Enterprise Server</a
+            ><br />
+            <a href="#" class="text-slate-400 inline-block mb-1"
+              >WebContainer API</a
+            ><br />
+            <a href="#" class="text-slate-400 inline-block mb-1"
+              >Web Publisher</a
+            >
+          </div>
+          <div class="mt-10">
+            <p class="text-white mb-5 font-medium text-sm">Platform</p>
+            <a href="#" class="text-slate-400 inline-block mb-1">Pricing</a>
+          </div>
+          <div class="mt-10">
+            <p class="text-white mb-5 font-medium text-sm">Support</p>
+            <a href="#" class="text-slate-400 inline-block mb-1">Community</a
+            ><br />
+            <a href="#" class="text-slate-400 inline-block mb-1">Docs</a>
+          </div>
+          <div class="mt-10">
+            <p class="text-white mb-5 font-medium text-sm">Company</p>
+            <a href="#" class="text-slate-400 inline-block mb-1">Blog</a><br />
+            <a href="#" class="text-slate-400 inline-block mb-1">Careers</a
+            ><br />
+            <a href="#" class="text-slate-400 inline-block mb-1">Newsletter</a>
+          </div>
+        </div>
+      </div>
+      <div
+        style="background: var(--bg-gradient-darkergray)"
+        class="px-6 pt-5 pb-8 sm:py-5"
+      >
+        <div class="lg:max-w-[1296px] mx-auto sm:flex justify-between">
+          <div class="mb-8 sm:mb-0">
+            <ul
+              class="text-[0.83rem] list-disc list-inside marker:text-xs flex flex-wrap justify-center gap-x-10 gap-y-3"
+            >
+              <li class="text-slate-300 whitespace-nowrap">
+                © 2023 StackBlitz Inc.
+              </li>
+              <li class="text-slate-400 whitespace-nowrap">
+                <a href="#">Terms of Service</a>
+              </li>
+              <li class="text-slate-400 whitespace-nowrap">
+                <a href="#">Privacy Policy</a>
+              </li>
+            </ul>
+          </div>
+          <div class="flex justify-center gap-6">
+            <a href="#"
+              ><img
+                src="images/twitter.svg"
+                alt="twitter logo"
+                style="
+                  filter: invert(100%) sepia(0%) saturate(7500%)
+                    hue-rotate(291deg) brightness(102%) contrast(107%);
+                "
+                class="h-[24px] w-[24px]"
+              />
+            </a>
+            <a href="#"
+              ><img
+                src="images/github.svg"
+                alt="github logo"
+                style="
+                  filter: invert(100%) sepia(0%) saturate(7500%)
+                    hue-rotate(291deg) brightness(102%) contrast(107%);
+                "
+                class="h-[24px] w-[24px]"
+              />
+            </a>
+            <a href="#"
+              ><img
+                src="images/discord.svg"
+                alt="discord logo"
+                style="
+                  filter: invert(100%) sepia(0%) saturate(7500%)
+                    hue-rotate(291deg) brightness(102%) contrast(107%);
+                "
+                class="h-[24px] w-[24px]"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="" style="background: var(--bg-gradient-darkestgray)">
+        <div class="lg:max-w-[1296px] mx-auto">
+          <p class="text-slate-500 text-xs px-5 pt-10 pb-2 lg:text-right">
+            StackBlitz Codeflow and the Infinite Pull Request logo are
+            trademarks of StackBlitz Inc.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
